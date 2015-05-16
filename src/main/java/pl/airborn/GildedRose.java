@@ -1,10 +1,14 @@
 package pl.airborn;
 
+import pl.airborn.aging.AgingStrategy;
+import pl.airborn.aging.AgingStrategyFactory;
+
 import java.util.List;
 
 public class GildedRose {
 
     private List<Item> items;
+    private AgingStrategyFactory agingStrategyFactory = new AgingStrategyFactory();
 
     public GildedRose(List<Item> items) {
         this.items = items;
@@ -12,9 +16,8 @@ public class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (!item.getName().equals("Sulfuras, Hand of Ragnaros")) {
-                item.setSellIn(item.getSellIn() - 1);
-            }
+            AgingStrategy agingStrategy = agingStrategyFactory.selectAgingStrategy(item);
+            agingStrategy.makeOlder(item);
 
             if (item.getName().equals("Aged Brie") || item.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
                 increaseQuality(item);
