@@ -13,6 +13,7 @@ public class QualityStrategyFactory {
         customQualityStrategies.put("Sulfuras, Hand of Ragnaros", new LegendaryItemQualityStrategy());
         customQualityStrategies.put("Aged Brie", new BrieQualityStrategy());
         customQualityStrategies.put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassQualityStrategy());
+        customQualityStrategies.put("Conjured cloak", new ConjuredQualityStrategy());
     }
 
     public QualityStrategy selectAgingStrategy(Item item) {
